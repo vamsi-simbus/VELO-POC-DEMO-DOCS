@@ -1,0 +1,280 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Velo High-Level Demo</title>
+<style>
+@page { size: A4; margin: 14mm 14mm; }
+body { font-family: "Segoe UI", Arial, sans-serif; font-size: 9.8pt; color: #1E293B; line-height: 1.4; }
+h1 { font-size: 19pt; margin: 0 0 2px; color: #0F172A; }
+.sub { color: #64748B; margin-bottom: 10px; font-size: 9.5pt; }
+h2 { font-size: 12.5pt; color: #fff; background: #1E3A5F; padding: 5px 9px; margin: 14px 0 8px; border-radius: 3px; page-break-after: avoid; }
+h2 .t { float: right; font-weight: 400; font-size: 10pt; }
+.frame { border-left: 4px solid #1E3A5F; background: #F1F5F9; padding: 7px 11px; margin: 6px 0 10px; }
+.screen { border: 1px solid #CBD5E1; border-radius: 4px; padding: 7px 11px; margin: 8px 0; page-break-inside: avoid; }
+.screen.long { page-break-inside: auto; }
+.screen h3 { margin: 0 0 4px; font-size: 11pt; color: #0F172A; }
+.screen h3 .path { font-weight: 400; color: #64748B; font-size: 9pt; margin-left: 6px; }
+.screen h3 .tag { float: right; font-size: 8.5pt; font-weight: 600; color: #fff; background: #059669; padding: 1px 7px; border-radius: 10px; }
+.screen h3 .tag.opt { background: #94A3B8; }
+.cols { display: flex; gap: 12px; }
+.col { flex: 1; }
+.col h4 { margin: 2px 0 2px; font-size: 9pt; color: #1E3A5F; text-transform: uppercase; letter-spacing: .3px; }
+.step { border-top: 1px dashed #CBD5E1; padding-top: 5px; margin-top: 5px; page-break-inside: avoid; }
+.step.first { border-top: none; margin-top: 0; padding-top: 0; }
+.sh { font-weight: 700; color: #0F172A; font-size: 10pt; margin-bottom: 2px; }
+.land { margin-top: 5px; color: #065F46; font-weight: 600; }
+.land:before { content: "Land: "; color: #1E3A5F; }
+b.c { background: #E2E8F0; padding: 0 3px; border-radius: 2px; font-weight: 600; }
+table { border-collapse: collapse; width: 100%; margin: 6px 0; font-size: 9.5pt; }
+th, td { border: 1px solid #CBD5E1; padding: 4px 7px; text-align: left; vertical-align: top; }
+th { background: #E2E8F0; }
+.box { border: 1px solid #CBD5E1; border-left: 4px solid #D97706; background: #FFFBEB; padding: 7px 11px; margin: 8px 0; border-radius: 3px; page-break-inside: avoid; }
+.box.red { border-left-color: #B91C1C; background: #FEF2F2; }
+.box.blue { border-left-color: #1D4ED8; background: #EFF6FF; }
+.box h3 { margin: 0 0 4px; font-size: 10.5pt; }
+ul { margin: 2px 0 3px 16px; padding: 0; }
+li { margin: 1px 0; }
+</style></head><body>
+
+<h1>Velo — High-Level Demo Script</h1>
+<div class="sub">For the CIO call · Module 1, Module 2 and Reports · Internal presenter notes · 28 Oct 2026</div>
+
+<table>
+<tr><th>Time you get</th><th>What to show</th></tr>
+<tr><td><b>5 min</b></td><td>Opening · Allocation Summary · Buffer Map · Season Performance · Close</td></tr>
+<tr><td><b>10 min</b></td><td>MUST SHOW screens only</td></tr>
+<tr><td><b>20 min</b></td><td>Everything below</td></tr>
+</table>
+
+<div class="box">
+<h3>Before the call</h3>
+<ul>
+<li>Log in as <b>Head of Planning</b>. A planner login only sees its own stores.</li>
+<li>Check the sidebar season selector and that the licence is valid.</li>
+<li>Make sure Module 2 has run so the queues aren't empty.</li>
+<li><b>Pick one demo store</b> with a good mix (some red cells, a few transfers and substitutions) and use it throughout.</li>
+<li>Rehearse Style Substitutions once. Open the home page before sharing.</li>
+</ul>
+</div>
+
+<h2>Opening <span class="t">~1 min</span></h2>
+<div class="frame"><i>"Good morning, everyone, and thank you for the opportunity. Let me share my screen and show you the product.
+This is <b>Simbus Velo, the Planner Workbench</b>, the web application the planners and the Head of Planning use day to day.
+It is deployed as a Databricks App inside the client's own Databricks workspace, so it works directly on their data and nothing leaves their environment.
+This is the home page, organised into four areas: <b>Module 1</b>, pre-season allocation of the buy plan across stores; <b>Module 2</b>, daily in-season replenishment;
+<b>Admin</b>, where seasons, business rules and user-store assignments are configured; and <b>Reports</b>, for performance tracking.
+I'll take you through it module by module, starting with Module 1."</i></div>
+<p><b>Show:</b> the home page. Point at each of the four areas as you name it, and at the season selector. Don't open Admin; just name it.</p>
+
+<!-- ================= MODULE 1 ================= -->
+<h2>Module 1 — Pre-season allocation <span class="t">~6 min</span></h2>
+<div class="frame"><b>Say (before opening the first screen):</b><br>
+<i>"Module 1 is the pre-season Initial Fill, the first allocation of the season's stock to stores. We start with the season's buy plan from the planning team, at store and size level.
+Velo runs a demand model trained on several seasons of sales and sell-through, which predicts how much of each product will sell in each store.
+Using that, the system optimises how the buy plan is distributed. Stock is allocated in line with each store's predicted demand, within its shelf capacity and size norms.
+The planners then review and adjust it, and the Head of Planning approves it before anything is released to the stores. Let me show you how that looks."</i></div>
+
+<div class="screen long"><h3>Allocation Summary <span class="path">/m1</span><span class="tag">MUST SHOW</span></h3>
+<div class="step first"><div class="sh">1 · The page</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Open the page and pause on the full view.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"This is the Allocation Summary. The planner sees system-recommended against planned units, across their stores."</li></ul></div></div></div>
+<div class="step"><div class="sh">2 · KPI cards</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li><b class="c">Stores In Plan</b>, <b class="c">Styles in Buy Plan</b>, <b class="c">System Allocated Units</b>, <b class="c">Planogram Breaches</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"The overall split at a glance: stores, styles, units allocated, and stores over shelf capacity."</li></ul></div></div></div>
+<div class="step"><div class="sh">3 · Store Overview</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li><b class="c">Store</b>, <b class="c">Grade</b>, <b class="c">Planogram Max Units</b>.</li>
+<li><b class="c">Buyer's Plan Units</b> vs <b class="c">System Plan Units</b>, same for Options.</li>
+<li><b class="c">Buyer Fit</b> / <b class="c">System Fit</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"Each store shows planned against recommended, in units and options."</li>
+<li>"The fit columns show whether each plan fits the store's shelf capacity."</li></ul></div></div></div>
+<div class="step"><div class="sh">4 · Store detail</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Click the demo store and filter by <b>Category</b>.</li>
+<li><b class="c">Buyer Qty</b> vs <b class="c">System Qty</b>, <b class="c">Final</b>, <b class="c">Predicted Sell-through</b>, <b class="c">System Reason</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"Line-level detail by style and size, with the predicted sell-through."</li>
+<li>"The reason column explains every quantity."</li></ul></div></div></div>
+<div class="land">Planned vs recommended, from season level down to each line.</div>
+</div>
+
+<div class="screen"><h3>Affinity Heat Map <span class="path">/m1/heatmap</span><span class="tag opt">IF TIME</span></h3>
+<div class="step first"><div class="sh">1 · The page</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Open the page and pause on the full view.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"This is the Affinity Heat Map. It shows the planner why the system allocated the way it did, store by store."</li></ul></div></div></div>
+<div class="step"><div class="sh">2 · The grid</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Store × category grid; filter by <b>City</b> or <b>Grade</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"The model's predicted sell-through for each store and category: green strong, red weak."</li></ul></div></div></div>
+<div class="step"><div class="sh">3 · Hover a cell</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Hover a green and a red cell. Point at a ★ cell.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"Stronger affinity, larger share. New stores (★) borrow a comparable store's profile."</li></ul></div></div></div>
+<div class="land">You can see why one store gets more than another.</div>
+</div>
+
+<div class="screen"><h3>Override &amp; Adjust <span class="path">/m1/override</span><span class="tag opt">IF TIME</span></h3>
+<div class="step first"><div class="sh">1 · Pick a store</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li><b>Select Store</b> = demo store; filter by <b>Category</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"This is Override &amp; Adjust, where the planner reviews and adjusts the recommendation for a store."</li></ul></div></div></div>
+<div class="step"><div class="sh">2 · The columns</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li><b class="c">Recommended Units</b>, <b class="c">Final Units</b>, <b class="c">Dev %</b>, <b class="c">Reason</b>. Don't save.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"Each line can move by only ±1 unit from the system recommendation, and every change needs a reason."</li>
+<li>"Changes must stay within shelf and stock limits. Going beyond the limits needs Head of Planning approval."</li></ul></div></div></div>
+<div class="step"><div class="sh">3 · Sign off the store</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Point at the <b>Sign Off</b> button. Don't click.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"The planner signs off each store once reviewed. Only signed-off stores go forward for Head of Planning approval."</li></ul></div></div></div>
+<div class="land">Planner judgement, within governed limits, signed off store by store.</div>
+</div>
+
+<div class="screen long"><h3>Approve &amp; Push <span class="path">/m1/approve</span><span class="tag">MUST SHOW</span></h3>
+<div class="step first"><div class="sh">1 · The page</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>The progress bar at the top: <b>Buy Plan → Allocation → Sign-Offs → Approve</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"This is Approve &amp; Push, the Head of Planning's final review before stock is released to stores."</li></ul></div></div></div>
+<div class="step"><div class="sh">2 · Pre-Approval Checklist</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>The <b>Pre-Approval Checklist</b>: buy plan uploaded, system allocation complete, all merchandisers signed off, planner deviations, new store seeding.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"A pass/fail checklist confirms everything is in place before approval is allowed."</li></ul></div></div></div>
+<div class="step"><div class="sh">3 · Allocation Waterfall</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Total buy → warehouse reserve → buyer allocation → system allocation → final dispatch.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"The full plan reconciled: what was bought, what stays in the warehouse, and what goes to stores."</li></ul></div></div></div>
+<div class="step"><div class="sh">4 · Category and store tables</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>The <b>by-category</b> table, then the <b>by-store</b> table. Click a store for its detail.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"The same plan by category and by store, so the Head of Planning can check the mix before approving."</li></ul></div></div></div>
+<div class="step"><div class="sh">5 · Sign-offs and overrides</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li><b>Sign-Offs</b> (<b class="c">Merchandiser</b>, <b class="c">Signed Off</b>) and <b>Planner Override Analysis</b> (<b class="c">System Rec.</b> vs <b class="c">Planner</b>, <b class="c">Δ Units</b>).</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"Which stores are signed off, and every change planners made against the recommendation."</li></ul></div></div></div>
+<div class="step"><div class="sh">6 · Buy plan versions and final approval</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>The <b>Final Approval</b> panel. <b>Don't click Approve.</b></li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"Until final approval, the buy plan can be updated with new versions. Every version is kept, and the allocation is re-run on the latest one."</li>
+<li>"Once approved, the plan is locked; any later change is a tracked amendment with a reason. Release to the ERP is a separate, controlled step."</li></ul></div></div></div>
+<div class="land">One checked, reconciled and accountable approval for the season.</div>
+</div>
+
+<div class="screen"><h3>M1 Audit Trail <span class="path">/m1/audit</span><span class="tag opt">IF TIME</span></h3>
+<div class="step first"><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Filter by <b>action</b> or <b>planner</b>, and by date (<b>From</b> / <b>To</b>).</li>
+<li>Point at entries such as <b>Override Saved</b>, <b>Store Signed Off</b>, <b>Plan Approved</b>, <b>Plan Exported</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"This is the Module 1 Audit Trail: every override, sign-off, approval and export, with who did it and when."</li>
+<li>"So the season's decisions are fully traceable."</li></ul></div></div></div>
+<div class="land">Every Module 1 decision is traceable.</div>
+</div>
+
+<!-- ================= MODULE 2 ================= -->
+<h2>Module 2 — Daily replenishment <span class="t">~8 min</span></h2>
+<div class="frame"><b>Say (before opening the first screen):</b><br>
+<i>"Module 2 is in-season replenishment, which keeps every store's range healthy while the season is trading.
+Every night, Velo takes the latest sales, stock on hand and in-transit data, and uses TOC-based buffer logic to identify the styles that need replenishment.
+The system then determines the right action: replenishment from the warehouse, a transfer from another store, or a replacement with a similar style. It also identifies slow-moving stock to be pulled back.
+Routine replenishment is approved automatically, so planners only review the exceptions. Let me show you how that looks."</i></div>
+
+<div class="screen long"><h3>Buffer Map <span class="path">/buffer</span><span class="tag">MUST SHOW</span></h3>
+<div class="step first"><div class="sh">1 · The heatmap</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Stores × categories, each cell split Black / Red / Yellow / Green, with a count in each segment.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"This is the Buffer Map. Each cell shows how many fashion buckets in that category sit in each buffer zone."</li></ul></div></div></div>
+<div class="step"><div class="sh">2 · Buffer zones</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li><b>Filter by city</b>, then <b>Filter by store</b> = demo store. Optionally <b>Filter by zone</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"Green is healthy; red and black mean the range is running thin, and that's when the engine acts."</li></ul></div></div></div>
+<div class="step"><div class="sh">3 · Drill down</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Click a red cell: <b class="c">Style ID</b>, <b class="c">Size</b>, <b class="c">Store SOH</b>, <b class="c">WH SOH</b>, <b class="c">Target</b>, <b class="c">ROQ</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"The exact styles and sizes behind the gap, and what needs ordering. This is what the nightly engine acts on."</li></ul></div></div></div>
+<div class="land">Gaps are visible before they become lost sales.</div>
+</div>
+
+<div class="screen"><h3>WH Dispatch Orders <span class="path">/wh-orders</span><span class="tag">MUST SHOW</span></h3>
+<div class="step first"><div class="sh">1 · Summary</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>KPI strip and the category breakdown.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"This is WH Dispatch Orders, the warehouse replenishment generated overnight. It is auto-approved because it's like-for-like."</li></ul></div></div></div>
+<div class="step"><div class="sh">2 · The orders</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Filter <b>Store</b> = demo store: <b class="c">Style</b>, <b class="c">Size</b>, <b class="c">Grade</b>, <b class="c">Ordered</b>, <b class="c">WH Avail.</b></li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"When stock is short, higher-grade stores are served first."</li></ul></div></div></div>
+<div class="land">Most replenishment runs without planner effort.</div>
+</div>
+
+<div class="screen"><h3>Inter Store Transfer <span class="path">/auto</span><span class="tag opt">IF TIME</span></h3>
+<div class="step first"><div class="sh">1 · The queue</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li><b class="c">Store Name</b> ← <b class="c">Donor Store</b>, <b class="c">Donor ROS (21d)</b>, <b class="c">Transfer Type</b>, <b class="c">Order Qty</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"This is the Inter Store Transfer queue. When the warehouse is out, stock moves from the slowest-selling store, within the same state."</li></ul></div></div></div>
+<div class="step"><div class="sh">2 · Approval</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>The approve and reject buttons. Don't click.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"A planner approves each transfer."</li></ul></div></div></div>
+<div class="land">Stock already owned moves to where it sells.</div>
+</div>
+
+<div class="screen"><h3>Style Substitutions <span class="path">/subs</span><span class="tag">MUST SHOW</span></h3>
+<div class="step first"><div class="sh">1 · The queue</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li><b>Select a store</b> = demo store: <b class="c">Photo</b>, <b class="c">Style Code</b>, <b class="c">Colour</b>, <b class="c">OOS Sizes</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"This is Style Substitutions. It lists styles sold out in core sizes that can't be refilled or transferred."</li></ul></div></div></div>
+<div class="step"><div class="sh">2 · AI search</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Click a style and run the search. Show the sold-out style's image next to the suggestions.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"Every product image is converted into a visual signature using the CLIP AI model, and stored in Databricks Vector Search."</li>
+<li>"The search finds the visually closest styles in seconds, then filters on business rules: same sleeve, right season, no clearance lines."</li></ul></div></div></div>
+<div class="step"><div class="sh">3 · The suggestion cards</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>On each card: <b>match score</b>, <b>size-wise warehouse stock</b>, <b>sell-through</b>, and the AI-written <b>similarity summary</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"Each suggestion shows how close the match is, whether a full size set is in stock, and how well it has sold."</li>
+<li>"A short AI summary explains why it's a good match."</li></ul></div></div></div>
+<div class="step"><div class="sh">4 · Confirm</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Point at the Confirm button. <b>Don't click.</b></li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"The planner picks one, and an order is created for the full size set, from stock that is reserved for it."</li></ul></div></div></div>
+<div class="land">AI-assisted replacement: visually similar, proven to sell, and ready to ship.</div>
+</div>
+
+<div class="screen"><h3>60-Day Pull-Back <span class="path">/velocity</span><span class="tag opt">IF TIME</span></h3>
+<div class="step first"><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Filter to demo store: <b>Style</b>, <b>Colour</b>, <b>Days In Store</b>, <b>Last Receipt</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"This is the 60-Day Pull-Back list. Styles not selling 60 days after delivery are flagged to come back and be redeployed."</li></ul></div></div></div>
+<div class="land">Slow stock is freed up early.</div>
+</div>
+
+<p><b>Close Module 2:</b> <i>"Routine replenishment is done overnight. Planners focus on transfers, replacements and pull-backs."</i></p>
+
+<!-- ================= REPORTS ================= -->
+<h2>Reports <span class="t">~4 min</span></h2>
+<div class="frame"><b>Say (before opening the first screen):</b><br>
+<i>"The last part is reporting. All KPIs are calculated on one agreed set of definitions, from the same governed data the engines use, so everyone works from the same numbers.
+There are two views: Season Performance for management, and Store Availability for the planning team."</i></div>
+
+<div class="screen long"><h3>Season Performance <span class="path">/reports/season</span><span class="tag">MUST SHOW</span></h3>
+<div class="step first"><div class="sh">1 · Headline</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>The sell-through dial and the "against target" bars.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"This is Season Performance, the management view: sell-through against target and against last year."</li></ul></div></div></div>
+<div class="step"><div class="sh">2 · Filter and drill</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Change <b>Region</b> or <b>Grade</b>; scroll to by-category and the weakest-stores grid.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"Any variance traces to the region, grade, category or store behind it."</li></ul></div></div></div>
+<div class="step"><div class="sh">3 · Core vs new</div><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Core / New this season / Carried over: <b class="c">Received</b>, <b class="c">Sold</b>, <b class="c">Change vs last year</b>.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"Core and new-season stock are tracked separately, as they behave differently."</li></ul></div></div></div>
+<div class="land">One source of truth for season performance.</div>
+</div>
+
+<div class="screen"><h3>Store Availability <span class="path">/reports/availability</span><span class="tag opt">IF TIME</span></h3>
+<div class="step first"><div class="cols">
+<div class="col"><h4>Show</h4><ul><li>Pivotal size availability dial, the tiles, then the stores-below-norm grid.</li></ul></div>
+<div class="col"><h4>Say</h4><ul><li>"This is Store Availability, the planners' weekly view. Availability is a leading indicator: a size not on the shelf can't sell."</li></ul></div></div></div>
+<div class="land">Gaps flagged while there is still time to act.</div>
+</div>
+
+<div class="box">
+<h3>When showing reports</h3>
+<ul>
+<li>Early in a season the new range looks low next to core. That's timing. Point at the change vs last year.</li>
+<li>These are baseline figures from the parallel run. <b>Don't present them as results produced by Velo.</b></li>
+</ul>
+</div>
+
+<h2>Close <span class="t">~1 min</span></h2>
+<div class="frame"><i>"So Velo covers the full cycle: an optimised allocation before the season, daily replenishment during it, and consistent measurement throughout.
+It all runs in the client's own Databricks environment, with planners in control of the decisions that matter.
+A good next step would be a parallel run on your data, so the impact can be measured side by side."</i></div>
+
+<div class="box blue">
+<h3>If the CIO asks</h3>
+<ul>
+<li><b>Where it runs:</b> Databricks in the client's own cloud. Data doesn't leave.</li>
+<li><b>Integration:</b> file-based in and out. No live coupling to the ERP.</li>
+<li><b>Access:</b> role-based and audit-logged. Planners see only their stores.</li>
+<li><b>Start small?</b> Yes. Module 2 alone is a common starting point.</li>
+</ul>
+</div>
+
+<div class="box red">
+<h3>Don't</h3>
+<ul>
+<li>Click Approve, Confirm or Save, or open Admin &gt; Licence.</li>
+<li>Say "real-time", "fully automated" or "live in production", or quote ROI numbers or go-live dates.</li>
+</ul>
+</div>
+
+</body></html>
